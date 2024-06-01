@@ -1,0 +1,253 @@
+[gd_scene load_steps=12 format=3 uid="uid://dfw3u7cxyxxo2"]
+
+[ext_resource type="Script" path="res://main/main.gd" id="1_oedq3"]
+[ext_resource type="PackedScene" uid="uid://cej4n3nkje606" path="res://main/enviorment.tscn" id="1_qhfdg"]
+[ext_resource type="Script" path="res://player/reticle.gd" id="3_a5ix2"]
+[ext_resource type="PackedScene" uid="uid://dhp4j8lkncvkc" path="res://main/pause_menu/pause_menu.tscn" id="4_hc47k"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_26v03"]
+sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+ground_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
+
+[sub_resource type="Sky" id="Sky_ekn3b"]
+sky_material = SubResource("ProceduralSkyMaterial_26v03")
+
+[sub_resource type="Environment" id="Environment_y4ebk"]
+background_mode = 2
+sky = SubResource("Sky_ekn3b")
+tonemap_mode = 2
+glow_enabled = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_smu7k"]
+font_size = 30
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x52j3"]
+bg_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5h57n"]
+bg_color = Color(0.0156863, 1, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4y3x2"]
+
+[node name="main" type="Node"]
+script = ExtResource("1_oedq3")
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_y4ebk")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)
+shadow_enabled = true
+
+[node name="enviorment" parent="." instance=ExtResource("1_qhfdg")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HUD" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="sprint_bar" type="ProgressBar" parent="CanvasLayer/HUD"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -93.0
+offset_right = 100.0
+offset_bottom = -66.0
+grow_horizontal = 2
+grow_vertical = 0
+max_value = 20.0
+show_percentage = false
+
+[node name="reticle" type="CenterContainer" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("3_a5ix2")
+
+[node name="top" type="Line2D" parent="CanvasLayer/HUD/reticle"]
+points = PackedVector2Array(0, -5, 0, -15)
+width = 2.0
+
+[node name="right" type="Line2D" parent="CanvasLayer/HUD/reticle"]
+points = PackedVector2Array(5, 0, 15, 0)
+width = 2.0
+
+[node name="bottom" type="Line2D" parent="CanvasLayer/HUD/reticle"]
+points = PackedVector2Array(0, 5, 0, 15)
+width = 2.0
+
+[node name="left" type="Line2D" parent="CanvasLayer/HUD/reticle"]
+points = PackedVector2Array(-5, 0, -15, 0)
+width = 2.0
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 476.0
+offset_top = 456.0
+offset_right = -486.0
+offset_bottom = -152.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.290196, 0.290196, 0.290196, 1)
+
+[node name="bullet_label" type="Label" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -100.0
+offset_top = -192.0
+offset_right = 90.0
+offset_bottom = -147.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "0 / 0"
+label_settings = SubResource("LabelSettings_smu7k")
+horizontal_alignment = 1
+
+[node name="health_bar" type="ProgressBar" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 417.0
+offset_top = 506.0
+offset_right = -417.0
+offset_bottom = -115.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_x52j3")
+theme_override_styles/fill = SubResource("StyleBoxFlat_5h57n")
+value = 100.0
+show_percentage = false
+
+[node name="kills_label" type="Label" parent="CanvasLayer/HUD"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -76.0
+offset_top = 11.0
+offset_right = -12.0
+offset_bottom = 34.0
+grow_horizontal = 0
+text = "Kills: 0"
+
+[node name="pause_menu" parent="CanvasLayer" instance=ExtResource("4_hc47k")]
+
+[node name="controls" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 21.0
+offset_top = -205.0
+offset_right = 327.0
+offset_bottom = 130.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4y3x2")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/controls"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/controls/MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/controls/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Controls:
+WASD / Arrow keys to move
+Left click to shoot
+Shift to sprint
+Ctrl to toggle crouch
+Number keys to cycle through weapons
+
+
+
+
+
+
+Don't play on mobile"
+
+[node name="main_menu" type="PanelContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 412.0
+offset_top = 121.0
+offset_right = -412.0
+offset_bottom = -121.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/main_menu"]
+layout_mode = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/main_menu/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 15
+
+[node name="Label" type="Label" parent="CanvasLayer/main_menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Main menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="host_button" type="Button" parent="CanvasLayer/main_menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Host
+"
+
+[node name="address_entry" type="LineEdit" parent="CanvasLayer/main_menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+placeholder_text = "Address"
+alignment = 1
+
+[node name="join_button" type="Button" parent="CanvasLayer/main_menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Join"
+
+[node name="quit" type="Button" parent="CanvasLayer/main_menu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+
+[node name="fps_counter" type="Label" parent="CanvasLayer"]
+visible = false
+offset_left = 8.0
+offset_top = 8.0
+offset_right = 48.0
+offset_bottom = 31.0
+text = "FPS: "
+
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+process_mode = 3
+_spawnable_scenes = PackedStringArray("res://player/player.tscn", "res://weapons/bullet/bullet.tscn")
+spawn_path = NodePath("..")
+
+[connection signal="pressed" from="CanvasLayer/main_menu/MarginContainer/VBoxContainer/host_button" to="." method="_on_host_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/main_menu/MarginContainer/VBoxContainer/join_button" to="." method="_on_join_button_pressed"]

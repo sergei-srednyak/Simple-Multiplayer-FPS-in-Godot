@@ -1,0 +1,328 @@
+[gd_scene load_steps=18 format=3 uid="uid://8d8busvhe1te"]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_x2eie"]
+[ext_resource type="PackedScene" uid="uid://cj7rqscdt3n7n" path="res://weapons/pistol.tscn" id="3_fs7ke"]
+[ext_resource type="PackedScene" uid="uid://dkb7lyci4vaxf" path="res://weapons/ak47.tscn" id="3_yk5hq"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_21iun"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_sy6dx"]
+material = SubResource("StandardMaterial3D_21iun")
+height = 2.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_nmdbp"]
+radius = 0.6
+height = 2.5
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o4pgi"]
+radius = 0.6
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_j8i8d"]
+
+[sub_resource type="Animation" id="Animation_ebx7r"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.643, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("head/Camera3D/hand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.3, -0.3, -0.6)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("head/Camera3D/hand:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MeshInstance3D:scale")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MeshInstance3D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kj3xr"]
+resource_name = "crouch"
+length = 0.2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.65, 0), Vector3(0, 0.65, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MeshInstance3D:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(1, 1, 1), Vector3(1, 0.75, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MeshInstance3D:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(0, -0.34305, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7rgrg"]
+resource_name = "switch"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("head/Camera3D/hand:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2, 0.5),
+"update": 0,
+"values": [Vector3(0.3, -0.3, -0.6), Vector3(0.3, -0.6, -0.6)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("head/Camera3D/hand:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(2, 0.5),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-0.872665, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_805q8"]
+_data = {
+"RESET": SubResource("Animation_ebx7r"),
+"crouch": SubResource("Animation_kj3xr"),
+"switch": SubResource("Animation_7rgrg")
+}
+
+[sub_resource type="Animation" id="Animation_xp5nr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0.65, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("head/Camera3D/hand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0.3, -0.3, -0.6)]
+}
+
+[sub_resource type="Animation" id="Animation_fdvs7"]
+resource_name = "crouch_walk"
+length = 0.6
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.079, 0), Vector3(0, 0.079, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_k8520"]
+resource_name = "walk"
+length = 0.4
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("head:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0.65, 0), Vector3(0, 0.65, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("head/Camera3D/hand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4),
+"transitions": PackedFloat32Array(2, 0.5, 0.5),
+"update": 0,
+"values": [Vector3(0.5, -0.3, -0.6), Vector3(0.425, -0.35, -0.6), Vector3(0.35, -0.3, -0.6)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tjt6w"]
+_data = {
+"RESET": SubResource("Animation_xp5nr"),
+"crouch_walk": SubResource("Animation_fdvs7"),
+"walk": SubResource("Animation_k8520")
+}
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_hruij"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("head:rotation")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("MeshInstance3D:scale")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("MeshInstance3D:position")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath("head:position")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+properties/6/path = NodePath("head/Camera3D:rotation")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+
+[node name="Player" type="CharacterBody3D" groups=["player"]]
+process_mode = 3
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0.9, 0)
+collision_layer = 2
+script = ExtResource("1_x2eie")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("CapsuleMesh_sy6dx")
+
+[node name="collision_full" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_nmdbp")
+
+[node name="collision_crouch" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.285714, 0)
+shape = SubResource("CapsuleShape3D_o4pgi")
+disabled = true
+
+[node name="head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.65, 0)
+
+[node name="Camera3D" type="Camera3D" parent="head"]
+transform = Transform3D(1.42857, 0, 0, 0, 1.42857, 0, 0, 0, 1.42857, 0, 0, -0.33708)
+
+[node name="username_label" type="Label3D" parent="head/Camera3D"]
+transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, 0, 0.545, 0.235956)
+billboard = 1
+
+[node name="hand" type="Node3D" parent="head/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.3, -0.6)
+
+[node name="ak47" parent="head/Camera3D/hand" instance=ExtResource("3_yk5hq")]
+visible = false
+
+[node name="pistol" parent="head/Camera3D/hand" instance=ExtResource("3_fs7ke")]
+visible = false
+
+[node name="head_collision" type="ShapeCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+shape = SubResource("SphereShape3D_j8i8d")
+debug_shape_custom_color = Color(0, 0.831373, 0, 1)
+
+[node name="sprint" type="Node" parent="."]
+
+[node name="sprint_regen" type="Timer" parent="sprint"]
+wait_time = 0.5
+
+[node name="sprint_drain" type="Timer" parent="sprint"]
+wait_time = 0.25
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_805q8")
+}
+
+[node name="AnimationPlayer2" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_tjt6w")
+}
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_hruij")
+
+[connection signal="timeout" from="sprint/sprint_regen" to="." method="_on_sprint_regen_timeout"]
+[connection signal="timeout" from="sprint/sprint_drain" to="." method="_on_sprint_drain_timeout"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

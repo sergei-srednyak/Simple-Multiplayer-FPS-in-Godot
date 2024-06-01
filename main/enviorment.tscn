@@ -1,0 +1,107 @@
+[gd_scene load_steps=10 format=3 uid="uid://cej4n3nkje606"]
+
+[ext_resource type="Texture2D" uid="uid://dlq78i3lh0541" path="res://assets/images/kenney_prototype-textures/PNG/Green/texture_01.png" id="3_7fudk"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2mf27"]
+albedo_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xhrxm"]
+albedo_color = Color(0.0784314, 0.0784314, 0.0784314, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ggykw"]
+albedo_color = Color(1, 0.568627, 0, 1)
+
+[sub_resource type="PrismMesh" id="PrismMesh_ovycv"]
+size = Vector3(15, 2, 2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0gk1k"]
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cfn0e"]
+albedo_texture = ExtResource("3_7fudk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iqeu7"]
+albedo_color = Color(0.298039, 1, 0, 1)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ue137"]
+albedo_color = Color(0.298039, 1, 0, 1)
+uv1_triplanar = true
+uv1_world_triplanar = true
+
+[node name="enviorment" type="Node3D"]
+
+[node name="map" type="CSGCombiner3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1, 0)
+use_collision = true
+
+[node name="boundary" type="CSGBox3D" parent="map"]
+size = Vector3(50, 5, 50)
+material = SubResource("StandardMaterial3D_2mf27")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="map/boundary"]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0.3, 0)
+operation = 2
+size = Vector3(50, 5, 50)
+material = SubResource("StandardMaterial3D_2mf27")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.22524, 0)
+radius = 2.5
+sides = 12
+material = SubResource("StandardMaterial3D_xhrxm")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="map"]
+transform = Transform3D(0.636396, 0, -0.636396, 0, 1, 0, 0.636396, 0, 0.636396, -20.3647, 0, 0)
+size = Vector3(2, 5, 2)
+material = SubResource("StandardMaterial3D_ggykw")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="map"]
+transform = Transform3D(0.636396, 0, -0.636396, 0, 1, 0, 0.636396, 0, 0.636396, 0, 0, -20.3647)
+size = Vector3(2, 5, 2)
+material = SubResource("StandardMaterial3D_ggykw")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="map"]
+transform = Transform3D(0.636396, 0, -0.636396, 0, 1, 0, 0.636396, 0, 0.636396, 20.3647, 0, 0)
+size = Vector3(2, 5, 2)
+material = SubResource("StandardMaterial3D_ggykw")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="map"]
+transform = Transform3D(0.636396, 0, -0.636396, 0, 1, 0, 0.636396, 0, 0.636396, 0, 0, 20.3647)
+size = Vector3(2, 5, 2)
+material = SubResource("StandardMaterial3D_ggykw")
+
+[node name="CSGMesh3D" type="CSGMesh3D" parent="map"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, 1.55563, -1.48009, 1.55563)
+mesh = SubResource("PrismMesh_ovycv")
+material = SubResource("StandardMaterial3D_0gk1k")
+
+[node name="CSGMesh3D2" type="CSGMesh3D" parent="map"]
+transform = Transform3D(0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, 0.707107, -1.55563, -1.48009, -1.55563)
+mesh = SubResource("PrismMesh_ovycv")
+material = SubResource("StandardMaterial3D_0gk1k")
+
+[node name="CSGMesh3D3" type="CSGMesh3D" parent="map"]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, -1.55564, -1.48009, 1.55563)
+mesh = SubResource("PrismMesh_ovycv")
+material = SubResource("StandardMaterial3D_0gk1k")
+
+[node name="CSGMesh3D4" type="CSGMesh3D" parent="map"]
+transform = Transform3D(-0.707107, 0, -0.707107, 0, 1, 0, 0.707107, 0, -0.707107, 1.55564, -1.48009, -1.55563)
+mesh = SubResource("PrismMesh_ovycv")
+material = SubResource("StandardMaterial3D_0gk1k")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="map"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -1.8, 0)
+material_override = SubResource("StandardMaterial3D_cfn0e")
+size = Vector3(25, 2, 25)
+material = SubResource("StandardMaterial3D_iqeu7")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="map/CSGBox3D5"]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
+operation = 2
+size = Vector3(25, 10, 25)
+material = SubResource("StandardMaterial3D_ue137")
