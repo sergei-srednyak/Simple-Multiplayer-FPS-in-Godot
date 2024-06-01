@@ -14,8 +14,6 @@ var enet_peer = ENetMultiplayerPeer.new()
 
 var game_started = false
 
-var players : Dictionary = {}
-
 func _ready():
 	quit.pressed.connect(get_tree().quit)
 
