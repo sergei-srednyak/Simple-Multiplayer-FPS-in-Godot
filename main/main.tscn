@@ -184,11 +184,7 @@ Ctrl to toggle crouch
 Number keys to cycle through weapons
 
 
-
-
-
-
-Don't play on mobile"
+Hosting and joining may take a while"
 
 [node name="main_menu" type="PanelContainer" parent="CanvasLayer"]
 anchors_preset = 15
