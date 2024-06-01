@@ -9,5 +9,7 @@ To host:
 Setting up multiplayer may take a moment
 
 To join:
+
 Open the game and type the IP in the address bar
+
 Joining also may take time
