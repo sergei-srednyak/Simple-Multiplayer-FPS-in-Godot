@@ -40,6 +40,7 @@ var sprint_max = 20
 var sprint_left = sprint_max
 
 enum weapons {
+	MELEE,
 	MAIN,
 	SECONDARY
 }
@@ -57,6 +58,7 @@ func _ready():
 	if not is_multiplayer_authority(): return
 	
 	weapon_refs = {
+		"MELEE": $head/Camera3D/hand/hammer,
 		"MAIN": $head/Camera3D/hand/ak47,
 		"SECONDARY": $head/Camera3D/hand/pistol
 	}
@@ -69,6 +71,7 @@ func _ready():
 	
 	camera.current = true
 	
+	weapon_refs["MELEE"].player_id = get_multiplayer_authority()
 	weapon_refs["MAIN"].player_id = get_multiplayer_authority()
 	weapon_refs["SECONDARY"].player_id = get_multiplayer_authority()
 	
@@ -111,11 +114,12 @@ func _input(event):
 		else:
 			anim_player2.pause()
 	
-	if event.is_action_pressed("weapon1") and weapon != weapons.MAIN:
+	if event.is_action_pressed("weapon1") and weapon != weapons.MELEE:
+		_raise_weapon(weapons.MELEE)
+	if event.is_action_pressed("weapon2") and weapon != weapons.MAIN:
 		_raise_weapon(weapons.MAIN)
-	if event.is_action_pressed("weapon2") and weapon != weapons.SECONDARY:
+	if event.is_action_pressed("weapon3") and weapon != weapons.SECONDARY:
 		_raise_weapon(weapons.SECONDARY)
-	
 
 func _physics_process(delta):
 	if not is_multiplayer_authority(): return
@@ -154,22 +158,40 @@ func _physics_process(delta):
 	else:
 		sprint_bar.hide()
 	var m
+	# switching
 	match weapon:
+		weapons.MELEE:
+			weapon_refs["MELEE"]._switch_to.rpc()
+			weapon_refs["MAIN"]._switch_away.rpc()
+			weapon_refs["SECONDARY"]._switch_away.rpc()
+			m = weapon_refs["MELEE"]
 		weapons.MAIN:
 			weapon_refs["MAIN"]._switch_to.rpc()
 			weapon_refs["SECONDARY"]._switch_away.rpc()
+			weapon_refs["MELEE"]._switch_away.rpc()
 			m = weapon_refs["MAIN"]
 		weapons.SECONDARY:
 			weapon_refs["SECONDARY"]._switch_to.rpc()
 			weapon_refs["MAIN"]._switch_away.rpc()
+			weapon_refs["MELEE"]._switch_away.rpc()
 			m = weapon_refs["SECONDARY"]
-	bullet_label.text = str(m.current_bullets) + " / " + str(m.total_bullets)
 	
-	if Input.is_action_pressed("function1") and can_shoot and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		m._function1()
+	if m.type == "gun":
+		bullet_label.text = str(m.current_bullets) + " / " + str(m.total_bullets)
+	else:
+		bullet_label.text = "∞ / ∞"
+	
+	# firing and reloading
+	if Input.is_action_pressed("function1") and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+		if m.type == "gun":
+			if can_shoot:
+				m._function1()
+		elif m.type == "melee":
+			m._function1.rpc()
 		
 	if Input.is_action_just_pressed("reload") and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-		m._reload.rpc()
+		if m.type == "gun":
+			m._reload.rpc()
 
 func _on_sprint_regen_timeout():
 	sprint_left += 1
