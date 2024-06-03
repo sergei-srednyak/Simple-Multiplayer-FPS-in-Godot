@@ -1,0 +1,106 @@
+[gd_scene load_steps=11 format=3 uid="uid://dfm813optrxfj"]
+
+[ext_resource type="Script" path="res://weapons/melee/melee.gd" id="1_ju3n2"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_u0kh8"]
+size = Vector3(0.2, 1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xuwsc"]
+albedo_color = Color(0.611765, 0.380392, 0, 1)
+disable_receive_shadows = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_fc2cl"]
+material = SubResource("StandardMaterial3D_xuwsc")
+size = Vector3(0.05, 1, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0d5a6"]
+albedo_color = Color(0.184314, 0.184314, 0.184314, 1)
+disable_receive_shadows = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_cx7cw"]
+material = SubResource("StandardMaterial3D_0d5a6")
+size = Vector3(0.2, 0.2, 0.4)
+
+[sub_resource type="Animation" id="Animation_c04ee"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("model:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(0, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_cn1dg"]
+resource_name = "attack"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("model:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(0, 0, 0), Vector3(-1.309, 0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_fiore"]
+resource_name = "back"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("model:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-1.309, 0, 0), Vector3(0, 0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xan03"]
+_data = {
+"RESET": SubResource("Animation_c04ee"),
+"attack": SubResource("Animation_cn1dg"),
+"back": SubResource("Animation_fiore")
+}
+
+[node name="hammer" type="Node3D"]
+script = ExtResource("1_ju3n2")
+type = "melee"
+damage = 50
+
+[node name="hitbox" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.1)
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="hitbox"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0.1)
+shape = SubResource("BoxShape3D_u0kh8")
+
+[node name="model" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="model"]
+mesh = SubResource("BoxMesh_fc2cl")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="model"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.367371, 0)
+mesh = SubResource("BoxMesh_cx7cw")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xan03")
+}
+
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]
