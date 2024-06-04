@@ -242,7 +242,7 @@ text = "FPS: "
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 process_mode = 3
-_spawnable_scenes = PackedStringArray("res://player/player.tscn", "res://weapons/bullet/bullet.tscn")
+_spawnable_scenes = PackedStringArray("res://player/player.tscn")
 spawn_path = NodePath("..")
 
 [connection signal="pressed" from="CanvasLayer/main_menu/MarginContainer/VBoxContainer/host_button" to="." method="_on_host_button_pressed"]
