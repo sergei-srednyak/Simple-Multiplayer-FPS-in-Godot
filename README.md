@@ -6,8 +6,8 @@ To host:
 1. Open with Godot
 2. Go to Project -> Export..
 3. Pick the present you want, or download one
-4. Hit "Export Project"(NOT ANYTHING ELSE)
-5. Export WITH DEBUG
+4. Hit "Export Project" (NOT ANYTHING ELSE)
+5. Export WITH DEBUG, under "Debug" set "Export Console Wrapper" to Debug only
 6. Run game with debug(depending on how you export, this could vary)
 7. Make sure UPNP is enabled on your router
 8. Click host then navigate to the debug window, there should be an IP address for others to join
