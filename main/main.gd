@@ -34,14 +34,14 @@ func _on_host_button_pressed():
 	add_player(multiplayer.get_unique_id())
 	get_node("CanvasLayer/HUD").show()
 	get_node("CanvasLayer/controls").hide()
-	upnp_setup()
+	#upnp_setup()
 	game_started = true
 	fps_counter.show()
 
 func _on_join_button_pressed():
 	main_menu.hide()
-	#enet_peer.create_client("localhost", PORT)
-	enet_peer.create_client(address_entry.text, PORT)
+	enet_peer.create_client("localhost", PORT)
+	#enet_peer.create_client(address_entry.text, PORT)
 	multiplayer.multiplayer_peer = enet_peer
 	get_node("CanvasLayer/controls").hide()
 	get_node("CanvasLayer/HUD").show()
