@@ -33,8 +33,10 @@ Export the game with steps above, then open the game and type the IP in the addr
 Joining also may take time
 
 ## Know issues:
+I have no idea how to fix these
 1. Sprint effects don't stop on unsprint sometimes
 2. To see the crouch effects you have to move
 3. Animations for switching do not work well while firing and crouching
-4. Colors of the players in multiplayer have errors
-5. Having three clients on one server may cause severe problems
+4. You can damage yourself
+5. Colors of the players in multiplayer have errors
+6. Having three clients on one server may cause severe problems
