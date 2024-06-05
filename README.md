@@ -1,8 +1,13 @@
 # Multiplayer-FPS-in-Godot
 
+### Description
+Simple multiplayer FPS game made in Godot. It features the ability to host your own and join other games.
+Very basic first person controller with sprinting and crouching(both somewhat glitchy).
+It also includes three weapons that you can switch between.
+Instructions in game.
 This game was made in Godot 4.2.1
 
-To host:
+### To host:
 1. Open with Godot
 2. Go to Project -> Export..
 3. Pick the present you want, or download one
@@ -16,13 +21,13 @@ To host:
 
 Setting up multiplayer may take a moment
 
-To join:
+### To join:
 
 Export the game with steps above, then open the game and type the IP in the address bar and click join
 
 Joining also may take time
 
-# Know issues:
+## Know issues:
 1. Sprint effects don't stop on unsprint sometimes
 2. To see the crouch effects you have to move
 3. Animations for switching do not work well while firing
