@@ -1,4 +1,4 @@
-# Multiplayer-FPS-in-Godot
+# Simple Multiplayer FPS in Godot
 
 ### Description
 Simple multiplayer FPS game made in Godot. It features the ability to host your own and join other games.
