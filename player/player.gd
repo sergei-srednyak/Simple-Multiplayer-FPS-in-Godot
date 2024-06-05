@@ -53,6 +53,7 @@ var can_shoot = true
 
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
+	_set_color(Color.from_hsv(randf_range(0, 1), 1, 1))
 
 func _ready():
 	if not is_multiplayer_authority(): return
@@ -64,10 +65,6 @@ func _ready():
 	}
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	
-	var material = $MeshInstance3D.get_active_material(0)
-	
-	material.albedo_color = Color.from_hsv(randf_range(0, 1), 1, 1)
 	
 	camera.current = true
 	
@@ -245,3 +242,7 @@ func _receive_damage(damage):
 func _add_kill():
 	kills += 1
 	get_tree().root.get_node("main/CanvasLayer/HUD/kills_label").text = "Kills: " + str(kills)
+
+func _set_color(color : Color):
+	var material = $MeshInstance3D.get_active_material(0)
+	material.albedo_color = color
