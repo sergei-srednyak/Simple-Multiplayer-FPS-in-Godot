@@ -179,7 +179,7 @@ func _physics_process(delta):
 	if m.type == "gun":
 		bullet_label.text = str(m.current_bullets) + " / " + str(m.total_bullets)
 	else:
-		bullet_label.text = "∞ / ∞"
+		bullet_label.text = ""
 	
 	# firing and reloading
 	if Input.is_action_pressed("function1") and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
