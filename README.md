@@ -3,9 +3,13 @@
 
 ### Description
 Simple multiplayer FPS game made in Godot. It features the ability to host your own and join other games.
+
 Very basic first person controller with sprinting and crouching(both somewhat glitchy).
+
 It also includes three weapons that you can switch between.
+
 Instructions in game.
+
 This game was made in Godot 4.2.1
 
 ### To host:
