@@ -1,4 +1,5 @@
 # Simple Multiplayer FPS in Godot
+![icon](https://github.com/sergei-srednyak/Multiplayer-FPS-in-Godot/assets/152813286/6b3df1f1-0944-40fc-a29c-a9493d993620)
 
 ### Description
 Simple multiplayer FPS game made in Godot. It features the ability to host your own and join other games.
