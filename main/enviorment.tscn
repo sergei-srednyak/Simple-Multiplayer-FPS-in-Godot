@@ -66,42 +66,42 @@ transform = Transform3D(8.9407e-08, 0, 1, 0, 1, 0, -1, 0, 8.9407e-08, 0.2, -1, -
 mesh = SubResource("PrismMesh_ep7kg")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="map/altar"]
-transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 3.10583, -1.2, 11.5911)
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, 3.10583, -1.77488, 11.5911)
 size = Vector3(6.5, 1.5, 1)
 material = SubResource("StandardMaterial3D_rh3xs")
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="map/altar"]
-transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -3.10583, -1.2, -11.5911)
+transform = Transform3D(0.965926, 0, 0.258819, 0, 1, 0, -0.258819, 0, 0.965926, -3.10583, -1.77488, -11.5911)
 size = Vector3(6.5, 1.5, 1)
 material = SubResource("StandardMaterial3D_rh3xs")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="map/altar"]
-transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, -11.5911, -1.2, 3.10583)
+transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, -11.5911, -1.77488, 3.10583)
 size = Vector3(6.5, 1.5, 1)
 material = SubResource("StandardMaterial3D_rh3xs")
 
 [node name="CSGBox3D4" type="CSGBox3D" parent="map/altar"]
-transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 11.5911, -1.2, -3.10583)
+transform = Transform3D(0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, 0.258819, 11.5911, -1.77488, -3.10583)
 size = Vector3(6.5, 1.5, 1)
 material = SubResource("StandardMaterial3D_rh3xs")
 
 [node name="CSGBox3D5" type="CSGBox3D" parent="map/altar"]
-transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -3.10583, -1.2, 11.5911)
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -3.10583, -1.77488, 11.5911)
 size = Vector3(6.5, 1.5, 1)
 material = SubResource("StandardMaterial3D_rh3xs")
 
 [node name="CSGBox3D6" type="CSGBox3D" parent="map/altar"]
-transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 3.10583, -1.2, -11.5911)
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, 3.10583, -1.77488, -11.5911)
 size = Vector3(6.5, 1.5, 1)
 material = SubResource("StandardMaterial3D_rh3xs")
 
 [node name="CSGBox3D7" type="CSGBox3D" parent="map/altar"]
-transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, -11.5911, -1.2, -3.10583)
+transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, -11.5911, -1.77488, -3.10583)
 size = Vector3(6.5, 1.5, 1)
 material = SubResource("StandardMaterial3D_rh3xs")
 
 [node name="CSGBox3D8" type="CSGBox3D" parent="map/altar"]
-transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, 11.5911, -1.2, 3.10583)
+transform = Transform3D(-0.258819, 0, -0.965926, 0, 1, 0, 0.965926, 0, -0.258819, 11.5911, -1.77488, 3.10583)
 size = Vector3(6.5, 1.5, 1)
 material = SubResource("StandardMaterial3D_rh3xs")
 
