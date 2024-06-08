@@ -6,10 +6,11 @@ extends Node3D
 @export var total_bullets : int = 0
 @export var magazine_size : int = 0
 
-var current_bullets : int
+var current_bullets : int = 0
 var default_bullets : int = 0
 
-@export var bullet_speed : int
+@export var bullet_speed : int = 50
+@export var bullet_range : int = 10
 @onready var anim_player : AnimationPlayer = $AnimationPlayer
 @onready var raycast : RayCast3D = $RayCast3D
 var bullet = preload("res://weapons/guns/bullet/bullet.tscn")
@@ -23,7 +24,7 @@ func _ready():
 	default_bullets = total_bullets
 	
 func _process(_delta):
-	if current_bullets == 0 and auto_reload:
+	if current_bullets == 0 and auto_reload and not total_bullets <= 0:
 		_reload()
 
 func _function1():
@@ -48,6 +49,7 @@ func _fire_bullet():
 	var shot = bullet.instantiate()
 	shot.speed = bullet_speed
 	shot.damage = damage
+	shot.get_node("Timer").wait_time = bullet_range
 	shot.position = raycast.global_position
 	shot.transform.basis = raycast.global_transform.basis
 	if player_id != -1:
@@ -61,6 +63,9 @@ func _on_animation_player_animation_finished(anim_name):
 		if not total_bullets <= 0 and not total_bullets < (magazine_size - current_bullets):
 			total_bullets = total_bullets - (magazine_size - current_bullets)
 			current_bullets = magazine_size
+		elif not total_bullets <= 0:
+			current_bullets = total_bullets
+			total_bullets = 0
 
 func _reset():
 	current_bullets = magazine_size
